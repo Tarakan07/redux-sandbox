@@ -6,6 +6,8 @@ let reducer = (state = 0, action) => {
 			return state + 1;
 		case "DEC":
 			return state - 1;
+		case "RND":
+			return state + action.payload;
 		default:
 			return state;
 	}
@@ -13,12 +15,18 @@ let reducer = (state = 0, action) => {
 };
 
 const store = createStore(reducer);
-
+const inc = () => ({ type: "INC" });
+const dec = () => ({ type: "DEC" });
+const rnd = (payload) => ({ type: "RND", payload });
 document.querySelector("#dec").onclick = () => {
-	store.dispatch({ type: "DEC" });
+	store.dispatch(dec());
 };
 document.querySelector("#inc").onclick = () => {
-	store.dispatch({ type: "INC" });
+	store.dispatch(inc());
+};
+document.querySelector("#rnd").onclick = () => {
+	const payload = Math.floor(Math.random() * 10);
+	store.dispatch(rnd(payload));
 };
 
 const update = () => {
