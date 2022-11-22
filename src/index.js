@@ -1,7 +1,4 @@
 let reducer = (state = 0, action) => {
-	if (state == undefined) {
-		return 0;
-	}
 	switch (action.type) {
 		case "INC":
 			return state + 1;
