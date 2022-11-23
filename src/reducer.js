@@ -12,3 +12,4 @@ let reducer = (state = 15, action) => {
 	return 0;
 };
 export default reducer;
+ 
