@@ -1,20 +1,17 @@
 import { React } from "react";
 import ReactDOM from "react-dom/client";
-import Counter from "./counter";
+import App from "./components/app";
 import { createStore, bindActionCreators } from "redux";
 import reducer from "./reducer";
-import * as actions from "./actions";
+import { Provider } from "react-redux";
 
 const store = createStore(reducer);
 const { dispatch } = store;
 
-const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
-
-const update = () => {
-	root.render(
-		<Counter counter={store.getState()} inc={inc} dec={dec} rnd={rnd} />
-	);
-};
+// const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
 const root = ReactDOM.createRoot(document.querySelector("#root"));
-update();
-store.subscribe(update);
+root.render(
+	<Provider store={store}>
+		<App />
+	</Provider>
+);
